@@ -13,10 +13,10 @@ namespace Bank
         private double Credito { get; set; }
         private string Nome { get; set; }
 
-        public Conta(TipoConta tipoConta, double saldo, double credito, string nome)
+        public Conta(TipoConta tipoConta, double credito, string nome)
         {
             this.TipoConta = tipoConta;
-            this.Saldo = saldo;
+            this.Saldo = 0;
             this.Credito = credito;
             this.Nome = nome;
         }
@@ -25,13 +25,13 @@ namespace Bank
         {
             if ((this.Saldo - valorSaque) < (this.Credito * -1))
             {
-                Console.WriteLine("Saldo insuficiente!");
+                Console.WriteLine(" Saldo insuficiente!");
                 return false;
             }
             else
             {
                 this.Saldo -= valorSaque;
-                Console.WriteLine($"Saldo atual da conta de {this.Nome} é {this.Saldo}.");
+                Console.WriteLine($" Saldo atual da conta de {this.Nome} é {this.Saldo}");
                 return true;
             }
         }
@@ -39,7 +39,26 @@ namespace Bank
         public void Depositar(double valorDeposito)
         {
             this.Saldo += valorDeposito;
-            Console.WriteLine($"Saldo atual da conta de {this.Nome} é {this.Saldo}.");
+            Console.WriteLine($" Saldo atual da conta de {this.Nome} é {this.Saldo}");
+        }
+
+
+        public void Transferir(double valorTransferencia, Conta contaDestino)
+        {
+            if (this.Sacar(valorTransferencia))
+            {
+                contaDestino.Depositar(valorTransferencia);
+            }
+        }
+
+        public double GetSaldo()
+        {
+            return this.Saldo;
+        }
+
+        public string GetNome()
+        {
+            return this.Nome;
         }
     }
 }
