@@ -20,6 +20,9 @@ namespace Desafios
                     case "2":
                         ConversorTempo();
                         break;
+                    case "3":
+                        MediaNotasValidas();
+                        break;
                     case "C":
                         Console.Clear();
                         MainHeader();
@@ -61,6 +64,7 @@ namespace Desafios
             Console.WriteLine(" Menu:");
             Console.WriteLine(" 1 - Is Tweet");
             Console.WriteLine(" 2 - Conversor de tempo");
+            Console.WriteLine(" 3 - Média das notas válidas");
             Console.WriteLine(" C - Limpar tela");
             Console.WriteLine(" X - Sair");
             Console.WriteLine();
@@ -107,6 +111,49 @@ namespace Desafios
 
             Console.WriteLine();
             Console.WriteLine($" RESULT: {horas.ToString().PadLeft(2, '0')}:{minutos.ToString().PadLeft(2, '0')}:{segundos.ToString().PadLeft(2, '0')}");
+
+            SectionFooter();
+        }
+
+
+        private static void MediaNotasValidas()
+        {
+            SectionHeader("3 - Média das notas válidas");
+
+            double nota1 = 0;
+            double nota2 = 0;
+            bool notaInvalida;
+
+            notaInvalida = true;
+            while (notaInvalida)
+            {
+                Console.Write(" Primeira nota : ");
+                nota1 = double.Parse(Console.ReadLine());
+
+                notaInvalida = (nota1 < 0 || nota1 > 10);
+
+                if (notaInvalida)
+                {
+                    Console.WriteLine(" Nota inválida");
+                }
+            }
+
+            notaInvalida = true;
+            while (notaInvalida)
+            {
+                Console.Write(" Segunda  nota : ");
+                nota2 = double.Parse(Console.ReadLine());
+
+                notaInvalida = (nota2 < 0 || nota2 > 10);
+
+                if (notaInvalida)
+                {
+                    Console.WriteLine(" Nota inválida");
+                }
+            }
+
+            double media = (nota1 + nota2) / 2;
+            Console.Write($" Média : {media.ToString("N2")}");
 
             SectionFooter();
         }
