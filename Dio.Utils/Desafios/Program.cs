@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Desafios
 {
@@ -22,6 +24,9 @@ namespace Desafios
                         break;
                     case "3":
                         MediaNotasValidas();
+                        break;
+                    case "4":
+                        NotasMaiores();
                         break;
                     case "C":
                         Console.Clear();
@@ -65,6 +70,7 @@ namespace Desafios
             Console.WriteLine(" 1 - Is Tweet");
             Console.WriteLine(" 2 - Conversor de tempo");
             Console.WriteLine(" 3 - Média das notas válidas");
+            Console.WriteLine(" 4 - Notas maiores");
             Console.WriteLine(" C - Limpar tela");
             Console.WriteLine(" X - Sair");
             Console.WriteLine();
@@ -154,6 +160,37 @@ namespace Desafios
 
             double media = (nota1 + nota2) / 2;
             Console.Write($" Média : {media.ToString("N2")}");
+
+            SectionFooter();
+        }
+
+
+        private static void NotasMaiores()
+        {
+            SectionHeader("4 - Notas Maiores");
+
+            int[] notas = { 90, 71, 82, 93, 75, 82 };
+            Console.Write(" Lista de notas  :");
+
+            foreach (var nota in notas)
+            {
+                Console.Write($" {nota},");
+            }
+
+            Console.WriteLine();
+
+            IEnumerable<int> listaNotasMaiores = notas.Where(notas => notas > 80);
+            int qtdeNotasMaiores = notas.Where(notas => notas > 80).Count();
+
+            Console.Write(" Notas maioes    :");
+
+            foreach (var nota in listaNotasMaiores)
+            {
+                Console.Write($" {nota},");
+            }
+
+            Console.WriteLine(); ;
+            Console.WriteLine($" Qtde de maiores : {qtdeNotasMaiores}");
 
             SectionFooter();
         }
